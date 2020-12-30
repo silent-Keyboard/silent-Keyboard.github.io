@@ -1,0 +1,100 @@
+<html>
+<head>
+	
+	<title>数据结构与算法的相关概念</title>
+	<meta name="keywords" content="zwhfocus.github.io" />
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+	   <link href="/css/main.css?v=3" rel="stylesheet" type="text/css" />
+    
+        
+<script src="/js/util.js"></script>
+
+        <script>
+            if(isMobile()) {
+                loadjscssfile('../css/mobile.css', 'css');
+            } else {
+                loadjscssfile('../css/desktop.css', 'css');
+            }
+        </script> 
+    
+
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
+
+    
+	<link rel="shortcut icon" type="image/x-icon" href="/%EF%BD%9A.ico?v=3"/>
+    
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+
+<h2 class="title">数据结构与算法的相关概念</h2>
+<div style="text-align:center;margin-top: -10px;">
+    <div class="article-category">
+    发表于2020年12月29日
+    
+    
+    
+    
+     </div>
+</div>
+
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%9A%84%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">数据结构与算法的相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95%E7%9A%84%E5%89%8D%E5%9B%A0%E5%90%8E%E6%9E%9C"><span class="toc-text">数据结构算法的前因后果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">复杂度分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">时间复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">空间复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%A5%BD%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-%E6%9C%80%E5%9D%8F%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-%E5%B9%B3%E5%9D%87%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-%E5%9D%87%E6%91%8A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">最好时间复杂度 最坏时间复杂度 平均时间复杂度 均摊时间复杂度</span></a></li></ol></li></ol>
+<h2 id="数据结构与算法的相关概念"><a href="#数据结构与算法的相关概念" class="headerlink" title="数据结构与算法的相关概念"></a>数据结构与算法的相关概念</h2><blockquote>
+<p>数据结构：一组数据的存储结构</p>
+</blockquote>
+<blockquote>
+<p>算法：操作数据的一组方法</p>
+</blockquote>
+<p>用更形象的方法去描述的话：一座图书馆里有很多的书架，每个书架上都有一个对应的编号，书架上的对应每一本书也有更详细的编号。书本身和书的位置就构成了数据的存储结构；”而图书管理员根据借书人的书籍编号可以将书放到原本的位置或移到其他位置”这个行为就构成了算法。</p>
+<h3 id="数据结构算法的前因后果"><a href="#数据结构算法的前因后果" class="headerlink" title="数据结构算法的前因后果"></a>数据结构算法的前因后果</h3><p>数据结构和算法诞生的使命就是让代码运行的速度更快以及资源消耗的更少。那么如何衡量代码运行的速度和资源消耗的多少呢？其实就是所谓的时间复杂度和空间复杂度。评估代码的执行效率最准确的方法就是将代码跑一遍进行监控从而统计，但这种方法有着非常大的局限性(最大的局限性就在于代码测试的环境并不能统一)。所以需要一个不用具体的测试数据来粗略的估计代码运行的效率的方法即数学的方法(这一方法也在《算法导论》这一本书中提及)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 该代码定义了一个函数并实现了1到n的累加和，最后返回累加和</span><br><span class="line">int cal(int n) &#123;</span><br><span class="line">  int sum &#x3D; 0;</span><br><span class="line">  int i &#x3D; 1;</span><br><span class="line">  for (; i &lt;&#x3D; n; ++i) &#123;</span><br><span class="line">    sum &#x3D; sum + i;</span><br><span class="line">  &#125;</span><br><span class="line">  return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>暂不考虑CPU以及计算机计算的差异等客观因素，假设每行代码的执行时间是一样的，记作unit_time。第 2、3 行代码分别需要 1 个 unit_time 的执行时间，第 4、5 行都运行了 n 遍，所以需要 2n*unit_time 的执行时间，所以这段代码总的执行时间就是 (2n+2)*unit_time。可以看出来，所有代码的执行时间 T(n) 与每行代码的执行次数成正比。我们都知道函数关系中不止有正比关系，还有二次函数，三次函数以及指数函数等等。类似的，代码的执行效率用数学的方法来描述也有很多的方式。</p>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><blockquote>
+<p>时间复杂度：算法的执行时间和数据规模之间的增长关系</p>
+</blockquote>
+<p>时间复杂度分析主要有以下几种策略</p>
+<ul>
+<li>只关注循环次数最多的代码</li>
+<li>加法法则：总复杂度等于量级最大的那段代码的复杂度</li>
+<li>乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</li>
+<li>理解：结合上面三种方法不难理解O(1) O(logn) O(nlogn) O(m+n) O(m*n)等几种时间复杂度分析(m,n表示两个不同数据规模的数据)</li>
+</ul>
+<h3 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h3><blockquote>
+<p>空间复杂度：算法的存储空间和数据规模之间的关系</p>
+</blockquote>
+<h3 id="最好时间复杂度-最坏时间复杂度-平均时间复杂度-均摊时间复杂度"><a href="#最好时间复杂度-最坏时间复杂度-平均时间复杂度-均摊时间复杂度" class="headerlink" title="最好时间复杂度 最坏时间复杂度 平均时间复杂度 均摊时间复杂度"></a>最好时间复杂度 最坏时间复杂度 平均时间复杂度 均摊时间复杂度</h3><p>当同一块代码在不同情况下，时间复杂度有量级的差距时，才需要分析最好、最坏以及平均时间复杂度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">均摊时间复杂度举例：</span><br><span class="line">    &#x2F;&#x2F; array表示一个长度为n的数组</span><br><span class="line">    &#x2F;&#x2F; 代码中的array.length就等于n</span><br><span class="line">    int[] array &#x3D; new int[n];</span><br><span class="line">    int count &#x3D; 0;</span><br><span class="line">    </span><br><span class="line">    void insert(int val) &#123;</span><br><span class="line">        if (count &#x3D;&#x3D; array.length) &#123;</span><br><span class="line">            int sum &#x3D; 0;</span><br><span class="line">            for (int i &#x3D; 0; i &lt; array.length; ++i) &#123;</span><br><span class="line">                sum &#x3D; sum + array[i];</span><br><span class="line">            &#125;</span><br><span class="line">            array[0] &#x3D; sum;</span><br><span class="line">            count &#x3D; 1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        array[count] &#x3D; val;</span><br><span class="line">        ++count;</span><br><span class="line">    &#125;</span><br><span class="line">    每一次 O(n) 的插入操作，都会跟着 n-1 次 O(1) 的插入操作，所以把耗时多的那次操作均摊到接下来的 n-1 次耗时少的操作上，</span><br><span class="line">    均摊下来，这一组连续的操作的均摊时间复杂度就是 O(1)。这就是均摊分析的大致思路。</span><br></pre></td></tr></table></figure>
+<!--
+<a href="http://example.com/2020/12/29/Data-Structor/#disqus_thread" class="article-comment-link">Comments</a>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = ''; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+-->
+<div style="display:none">
+<script src="http://s4.cnzz.com/stat.php?id=&web_id=" language="JavaScript"></script>script>
+</div>
+
+
+
+
+
+
+</body>
+</html>
