@@ -45,7 +45,18 @@
      </div>
 </div>
 
-
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%8E%E6%95%88%E7%8E%87%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-text">数组的低效率插入删除操作</span></a></li></ol></li></ol>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><blockquote>
+<p>什么是数组？数组是一种用连续的存储空间来存储相同数据类型的存储结构。理解连续的存储空间可以类比一层一层的楼梯，每个台阶都存储一个数据，连续的台阶就可以当作一个数组。</p>
+</blockquote>
+<p>大多数编程语言都会有数组的概念，并且大多数编程语言的数组的下标是从0开始的，理解数组的下标为什么以0开始时需要一些计算机基础的知识。</p>
+<p>首先需要理解数组的在计算机中的内存地址，连续存储空间以及相同数据类型<br><img src="array.png" alt="数组"><br>以下公式是计算数组第K个位置的元素的地址，base_address是数组首个元素地址，type_size是数组中元素的数据类型大小。如果数组下标从1开始则第K个元素的地址计算操作就比数组下标是0多个减法的操作。这在最初的C语言中是会影响性能的，尤其是在数组这个数据结构经常使用的情况下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[k]_address &#x3D; base_address + k * type_size</span><br></pre></td></tr></table></figure>
+<p>此外根据上面的公式也是可以得出一个结论的：数组支持随机访问，并且根据下标进行随机访问的时间复杂度是O(1)。那什么叫做随机访问，简单来说就是我有一个数组，然后你随便给我一个数字，只要数组存在这个下标的元素， 我都可以立即找到该元素并且花费的时间是O(1)。</p>
+<h3 id="数组的低效率插入删除操作"><a href="#数组的低效率插入删除操作" class="headerlink" title="数组的低效率插入删除操作"></a>数组的低效率插入删除操作</h3><p>首先看看数组的插入操作，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void addElement(int[] arr, int element, int position)&#123;</span><br><span class="line">    int len &#x3D; arr.length();</span><br><span class="line">    for(int i &#x3D; len; i &gt;position; i--)&#123;</span><br><span class="line">        arr[i] &#x3D; arr[i-1];</span><br><span class="line">    &#125;</span><br><span class="line">    arr[position] &#x3D; element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码只是简单的描述了数组的插入操作大致的逻辑，把一个元素插入到数组中主要有三种情况。第一种是插入到数组末尾，这时不需要什么额外的操作，直接arr[position] = element即可；第二种情况是插入到数组头部，这时候需要将所有的元素往后移动，这时候的时间复杂度和数组规模有关，假设数组规模大小n,这时候的时间复杂度是O(n)；第三种情况是插入到数组中间某个位置position,这时候需要将postition之后的元素都往后移一位，时间复杂度是O(n-postition)，也可以理解为是关于n的线性关系。从数学的角度分析，插入到数组每个位置的概率几乎一样，第一个位置需要移动n个元素，第二个位置需要移动n-1位，以此类推，最后一个位置不需要移动元素，平均下来，每个位置需要移动的元素（0+1+2+…n）/(n+1),仍然是关于n的线性关系。综上述数组的插入操作的平均时间复杂度是O(n)。</p>
+<p>关于数组的删除操作其实也是类似的，删除操作的平均时间复杂度是O(n).</p>
 
 <!--
 <a href="http://example.com/2020/12/30/Common-data-structure/#disqus_thread" class="article-comment-link">Comments</a>
