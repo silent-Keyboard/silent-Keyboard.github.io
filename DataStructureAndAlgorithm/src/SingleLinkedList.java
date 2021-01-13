@@ -1,4 +1,3 @@
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /**
  * @author silent-keyboard
@@ -54,9 +53,44 @@ public class SingleLinkedList {
         length = length + 1;
     }
 
+    public void deleteByIndex(int index) throws myException{
+        if (isEmpty()) {
+            throw new myException("list is empty!");
+        }
+        checkCapacity(index);
+
+        Node temp1 = queryByIndex(index);
+        // the first is special!
+        if (index == 1) {
+            head.next = temp1.next;
+        } else {
+            Node temp2 = queryByIndex(index -1);
+            temp2.next = temp1.next;
+        }
+        length = length - 1;
+    }
+
     public void checkCapacity(int index) throws myException {
-        if (index >= MAXLENGTH) {
-            throw new myException("The single linked list has reached the maximum capacity");
+        if (index > MAXLENGTH) {
+            throw new myException("index:" + index + "is greater than the single linked list's maximum capacity");
+        }
+    }
+
+    public void reveseLinkedList() {
+        if (length == 0 || length == 1) {
+            return;
+        }else {
+            Node p = head.next;
+            Node q = head.next.next;
+            p.next = null;
+            while (null != q.next) {
+                Node r = q.next;
+                q.next = p;
+                p = q;
+                q = r;
+            }
+            q.next = p;
+            head.next = q;
         }
     }
 
@@ -72,6 +106,8 @@ public class SingleLinkedList {
             System.out.println("\n");
         }
     }
+
+
 
     public class Node {
         private int element;
@@ -93,7 +129,7 @@ public class SingleLinkedList {
 
     public static void main(String[] args) {
         SingleLinkedList list = new SingleLinkedList();
-        for (int i = 1; i < 13; i++) {
+        for (int i = 1; i < 4; i++) {
             try {
                 list.addToHeader(i);
             } catch (myException e) {
@@ -103,13 +139,20 @@ public class SingleLinkedList {
         }
 
         list.output();
-
-        try {
-            Node temp1 = list.queryByIndex(1);
-            Node temp2 = list.queryByValue(8);
-            System.out.println(temp1.element);
-        } catch (myException myException) {
-            System.out.println(myException.getMessage());
-        }
+//        try {
+//            list.deleteByIndex(8);
+//        } catch (myException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        list.output();
+//        try {
+//            Node temp1 = list.queryByIndex(1);
+//            Node temp2 = list.queryByValue(8);
+//            System.out.println(temp1.element);
+//        } catch (myException myException) {
+//            System.out.println(myException.getMessage());
+//        }
+        list.reveseLinkedList();
+        list.output();
     }
 }
