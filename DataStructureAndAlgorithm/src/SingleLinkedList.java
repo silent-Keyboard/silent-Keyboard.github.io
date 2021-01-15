@@ -3,7 +3,8 @@
  * @author silent-keyboard
  * DATA: 2021/01/12
  * Note: The element type of single-linked-list is int.
- * The aim of program: single-linkfrf-list's basic operation
+ * The aim of program: single-linkfrf-list's basic operation include :Ring detection、single linked list、inversion LRU
+ *
  */
 
 public class SingleLinkedList {
@@ -95,12 +96,39 @@ public class SingleLinkedList {
         return 0;
     }
 
-    public void checkRing() {
-
+    public boolean checkRing() {
+        // 奇数个 偶数个 元素注意 空指针问题
+        Node p = head.next;
+        Node q = head.next;
+        if (length > 2) {
+            while(null != q.next) {
+                if (p.element == q.element) {
+                    return true;
+                }
+                p = p.next;
+                q = q.next.next;
+            }
+        }
+        return false;
     }
 
     public void checkRingTest() {
+        for (int i = 1; i <= 7; i++) {
+            try {
+                addToHeader(i);
+            } catch (MyException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
+//        try {
+//            Node p1 = queryByIndex(5);
+//            Node p2 = queryByIndex(7);
+//            p2.next = p1;
+//        } catch (MyException e) {
+//            System.out.println(e.getMessage());
+//        }
+        System.out.println(checkRing());
     }
 
     public void LRU(int element) {
@@ -171,15 +199,16 @@ public class SingleLinkedList {
     public static void main(String[] args) {
         // write down your test code int the next lines
         SingleLinkedList list = new SingleLinkedList();
-        for (int i = 1; i < 11; i++) {
-            try {
-                list.addToHeader(i);
-            } catch (MyException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        list.output();
-        list.LRU(12);
-        list.output();
+//        for (int i = 1; i < 11; i++) {
+//            try {
+//                list.addToHeader(i);
+//            } catch (MyException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//        list.output();
+//        list.LRU(12);
+//        list.output();
+        list.checkRingTest();
     }
 }
