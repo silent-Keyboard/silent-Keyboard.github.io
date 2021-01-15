@@ -31,7 +31,7 @@ public class SingleLinkedList {
         throw  new myException("value:" + element + ":is not exists!");
     }
 
-    public Node queryByIndex(int index) throws myException{
+    public Node queryByIndex(int index) throws MyException{
         Node temp = head;
         int i = 1;
         while( i < index && null != temp.next) {
@@ -39,10 +39,10 @@ public class SingleLinkedList {
             i = i + 1;
         }
         if (i == index) return temp.next;
-        throw new myException("index:" + index + " is not exists!");
+        throw new MyException("index:" + index + " is not exists!");
     }
 
-    public void addToHeader(int element) throws myException {
+    public void addToHeader(int element) throws MyException {
 
         checkCapacity(length);
 
@@ -53,9 +53,9 @@ public class SingleLinkedList {
         length = length + 1;
     }
 
-    public void deleteByIndex(int index) throws myException{
+    public void deleteByIndex(int index) throws MyException{
         if (isEmpty()) {
-            throw new myException("list is empty!");
+            throw new MyException("list is empty!");
         }
         checkCapacity(index);
 
@@ -70,13 +70,54 @@ public class SingleLinkedList {
         length = length - 1;
     }
 
-    public void checkCapacity(int index) throws myException {
+    public void checkCapacity(int index) throws MyException {
         if (index > MAXLENGTH) {
-            throw new myException("index:" + index + "is greater than the single linked list's maximum capacity");
+            throw new MyException("index:" + index + "is greater than the single linked list's maximum capacity");
         }
     }
 
-    public void reveseLinkedList() {
+    /**
+     *
+     * @param element: the value of what you want to query
+     * @return: the index of the first occurence of the element  in the single-linked-list represented by the object that
+     * is greater than or equal to 1 , or 0 if the element does not occur.
+     */
+    public int isExistsValue(int element) {
+        int index = 0;
+        Node temp = head;
+        while(null != temp.next) {
+            if (temp.element == element) {
+                return index;
+            }
+            index = index + 1;
+            temp = temp.next;
+        }
+        return 0;
+    }
+
+    public void checkRing() {
+
+    }
+
+    public void checkRingTest() {
+
+    }
+
+    public void LRU(int element) {
+        int index = isExistsValue(element);
+        try {
+            if (index > 0) {
+                deleteByIndex(index);
+            } else if (length == MAXLENGTH) {
+                deleteByIndex(length);
+            }
+            addToHeader(element);
+        } catch (MyException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void reverseLinkedList() {
         if (length == 0 || length == 1) {
             return;
         }else {
@@ -128,31 +169,17 @@ public class SingleLinkedList {
     }
 
     public static void main(String[] args) {
+        // write down your test code int the next lines
         SingleLinkedList list = new SingleLinkedList();
-        for (int i = 1; i < 4; i++) {
+        for (int i = 1; i < 11; i++) {
             try {
                 list.addToHeader(i);
-            } catch (myException e) {
+            } catch (MyException e) {
                 System.out.println(e.getMessage());
-                break;
             }
         }
-
         list.output();
-//        try {
-//            list.deleteByIndex(8);
-//        } catch (myException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        list.output();
-//        try {
-//            Node temp1 = list.queryByIndex(1);
-//            Node temp2 = list.queryByValue(8);
-//            System.out.println(temp1.element);
-//        } catch (myException myException) {
-//            System.out.println(myException.getMessage());
-//        }
-        list.reveseLinkedList();
+        list.LRU(12);
         list.output();
     }
 }
