@@ -97,26 +97,26 @@ public class SingleLinkedList {
     }
 
     public boolean checkRing() {
-        // 奇数个 偶数个 元素注意 空指针问题
         Node p = head.next;
         Node q = head.next;
 
         p = p.next;
         q = q.next.next;
         if (length > 2) {
-            while(null != q.next) {
+            while(null != q.next && null != q.next.next) {
                 if (p.element == q.element) {
                     return true;
                 }
                 p = p.next;
                 q = q.next.next;
+
             }
         }
         return false;
     }
 
     public void checkRingTest() {
-        for (int i = 1; i <= 7; i++) {
+        for (int i = 1; i <= 7; i++) {-
             try {
                 addToHeader(i);
             } catch (MyException e) {
@@ -124,13 +124,14 @@ public class SingleLinkedList {
             }
         }
 
-//        try {
-//            Node p1 = queryByIndex(5);
-//            Node p2 = queryByIndex(7);
-//            p2.next = p1;
-//        } catch (MyException e) {
-//            System.out.println(e.getMessage());
-//        }
+        // Check that there is no ring: Comment out the try statement block
+        try {
+            Node p1 = queryByIndex(5);
+            Node p2 = queryByIndex(7);
+            p2.next = p1;
+        } catch (MyException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(checkRing());
     }
 
