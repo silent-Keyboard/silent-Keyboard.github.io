@@ -100,6 +100,9 @@ public class SingleLinkedList {
         // 奇数个 偶数个 元素注意 空指针问题
         Node p = head.next;
         Node q = head.next;
+
+        p = p.next;
+        q = q.next.next;
         if (length > 2) {
             while(null != q.next) {
                 if (p.element == q.element) {
@@ -175,8 +178,6 @@ public class SingleLinkedList {
             System.out.println("\n");
         }
     }
-
-
 
     public class Node {
         private int element;
