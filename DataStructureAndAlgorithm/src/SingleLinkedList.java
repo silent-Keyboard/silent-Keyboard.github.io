@@ -116,7 +116,7 @@ public class SingleLinkedList {
     }
 
     public void checkRingTest() {
-        for (int i = 1; i <= 7; i++) {-
+        for (int i = 1; i <= 7; i++) {
             try {
                 addToHeader(i);
             } catch (MyException e) {
