@@ -1,20 +1,25 @@
 <html>
 <head>
 	
-	<title>Silent Keyboard</title>
+	<title></title>
 	<meta name="keywords" content="zwhfocus.github.io" />
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
-        <link href="/css/home.css?v=3" rel="stylesheet" type="text/css" />
+	   <link href="/css/main.css?v=3" rel="stylesheet" type="text/css" />
+    
         
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/util.js"></script>
 
-        
-<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-
+        <script>
+            if(isMobile()) {
+                loadjscssfile('../css/mobile.css', 'css');
+            } else {
+                loadjscssfile('../css/desktop.css', 'css');
+            }
+        </script> 
     
 
     <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
@@ -82,27 +87,6 @@
 
                     
                     
-<li class="list-group-item title">
-    <a target="_blank" href="/2020/12/31/commonDataStructure/">commonDataStructure</a>
-</li>
-
-
-                    
-                    
-<li class="list-group-item title">
-    <a target="_blank" href="/2020/12/30/Common-data-structure/">线性表</a>
-</li>
-
-
-                    
-                    
-<li class="list-group-item title">
-    <a target="_blank" href="/2020/12/29/Data-Structor/">数据结构与算法的相关概念</a>
-</li>
-
-
-                    
-                    
                 </ul>
             </div>
         </div>
@@ -115,11 +99,6 @@
     </div>
 </div>
 
-
-
-<!--加载导航栏所需js文件-->
-<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 
 

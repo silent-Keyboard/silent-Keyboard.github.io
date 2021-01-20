@@ -45,7 +45,7 @@
      </div>
 </div>
 
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-text">线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%8E%E6%95%88%E7%8E%87%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-text">数组的低效率插入删除操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-text">链表</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-text">线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%8E%E6%95%88%E7%8E%87%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-text">数组的低效率插入删除操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-text">链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E3%80%81%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%8E%AF%E7%9A%84%E6%A3%80%E6%B5%8B%EF%BC%8CLRU%EF%BC%8C%E6%A0%88%E6%93%8D%E4%BD%9C%E7%AD%89%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E5%9C%A8Github%E4%B8%8A"><span class="toc-text">单链表反转、链表中环的检测，LRU，栈操作等部分代码在Github上</span></a></li></ol></li></ol>
 <h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><ul>
 <li>线性表的逻辑结构：数据元素之间存在一对一的前驱后继关系</li>
 <li>线性表的物理结构：顺序存储结构、链式存储结构</li>
@@ -62,16 +62,64 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void addElement(int[] arr, int element, int position)&#123;</span><br><span class="line">    int len &#x3D; arr.length();</span><br><span class="line">    for(int i &#x3D; len; i &gt;position; i--)&#123;</span><br><span class="line">        arr[i] &#x3D; arr[i-1];</span><br><span class="line">    &#125;</span><br><span class="line">    arr[position] &#x3D; element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面代码只是简单的描述了数组的插入操作大致的逻辑，把一个元素插入到数组中主要有三种情况。第一种是插入到数组末尾，这时不需要什么额外的操作，直接arr[position] = element即可；第二种情况是插入到数组头部，这时候需要将所有的元素往后移动，这时候的时间复杂度和数组规模有关，假设数组规模大小n,这时候的时间复杂度是O(n)；第三种情况是插入到数组中间某个位置position,这时候需要将postition之后的元素都往后移一位，时间复杂度是O(n-postition)，也可以理解为是关于n的线性关系。从数学的角度分析，插入到数组每个位置的概率几乎一样，第一个位置需要移动n个元素，第二个位置需要移动n-1位，以此类推，最后一个位置不需要移动元素，平均下来，每个位置需要移动的元素（0+1+2+…n）/(n+1),仍然是关于n的线性关系。综上述数组的插入操作的平均时间复杂度是O(n)。</p>
 <p>关于数组的删除操作其实也是类似的，删除操作的平均时间复杂度是O(n).<br>简单应用：关于数组的删除操作，如果删除操作太过于频繁，这时候为了减少该重复的操作，一般都会采用标记删除的方法。即把要删除的元素做一个标记，待到一定时机一次性删除本来应该删除的元素。</p>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
-<p>从底层的存储结构来看，数组需要的是一组连续的存储空间，而链表并不需要一组连续的存储空间，但是链表需要将可能不连续的存储空间通过指针串联起来使用,如下图（链表的各个元素的内存地址并不一定是连续的）</p>
-</blockquote>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><ol>
+<li>从底层的存储结构来看，数组需要的是一组连续的存储空间，而链表并不需要一组连续的存储空间，但是链表需要将可能不连续的存储空间通过指针串联起来使用,如下图（链表的各个元素的内存地址并不一定是连续的）</li>
+</ol>
 <p><img src="LinkedList.png" alt="链表底层存储结构"></p>
-<p>链表有单链表，双链表，循环链表等，以单链表为例。如下图单链表的元素由两部分组成：data以及next指针。其中头一个元素叫做头结点，用来记录链表的基地址，最后一个元素叫尾结点，通常其尾结点是指向null的。</p>
+<ol start="2">
+<li>链表有单链表，双链表，循环链表等，以单链表为例。如下图单链表的元素由两部分组成：data以及next指针。其中头一个元素叫做头结点，用来记录链表的基地址，最后一个元素叫尾结点，通常其尾结点是指向null的。</li>
+</ol>
 <p><img src="LinkedList1.png" alt="单链表"></p>
-<p>单链表的插入删除操作图解如下，插入删除操作只需要考虑相邻结点的指针改变，所以对应的时间复杂度是O(1)。</p>
+<ol start="3">
+<li>单链表的插入删除操作图解如下，插入删除操作只需要考虑相邻结点的指针改变，所以对应的时间复杂度是O(1)。</li>
+</ol>
 <p><img src="LinkedList-insert-delete.png" alt="单链表插入删除操作"></p>
 <p>虽然链表的插入删除操作是比较高效的，但是查找任意一个元素却总是需要O(n)时间复杂度，n表示链表的长度大小。因为我们创建链表的时候只知道链表的头结点的地址，要找到其他结点的元素只能顺着头结点一个一个往下找。</p>
-
+<ol start="4">
+<li><p>指针或引用：理解指针的概念也很简单，首先你得知道变量是什么。变量可以是一个装有东西的箱子，里面可以是数字1也可以是字符串”hello”。而当箱子里面的东西是内存地址时，这个变量就可以称作指针(计算机可以通过内存地址来获取该内存地址上的内容)。</p>
+</li>
+<li><p>实现单链表：想要实现你的单链表，你首先需要理解单链表的构成，理解指针的概念，掌握一门编程语言的核心语法。接下来在编写单链表的过程中注意一些以下要点</p>
+<ul>
+<li>注意指针的丢失和内存的泄露</li>
+<li>边界条件处理(边界情况可概况为：链表中没有结点、只有一个结点、只有两个结点、只有头尾两个结点的情况)</li>
+<li>利用哨兵简化实现难度(可选)</li>
+<li>方向正确之后成功就只是时间问题，多画图辅助思考</li>
+</ul>
+</li>
+<li><p>练习 单链表反转 链表中环的检测 两个有序的链表合并 删除链表倒数第 n 个结点 求链表的中间结点。</p>
+<ul>
+<li>单链表反转，借助了三个指针逐个改变链表的方向</li>
+<li>环的检测，借助快慢指针，快指针始终比慢指针快一个结点，快慢指针按照设定的速度一直走下去，若有环则未来必定相遇</li>
+<li>有序链表合并，两个链表逐个结点比较，将较小的结点放到第三个链表上，比较完之后直接将剩下结点放到第三个链表上</li>
+<li>删除链表倒数第n个结点，如果知道链表长度就很简单，如果不知道链表长度则需要通过一些技巧找到倒数第n个结点。比如p指针遍历n个结点，然后q指针此时和p指针再一起出发，直到p指针遍历到尾结点，这时q结点就是倒数第n个结点。这和初中物理的路程问题非常的相似。</li>
+<li>链表中间结点也很简单，如果不知道链表长度，可以借助快慢指针。快指针一次遍历两个结点，慢指针一次遍历一个结点，然后快慢指针一起出发，知道快指针遍历到了尾结点，这时候慢指针就处在链表的中间结点。</li>
+</ul>
+</li>
+<li><p>LRU缓存淘汰算法：维护这样一个有序单链表，越靠近链表底部是越早之前访问的，当有一个新的数据data被访问时，我们从链表头部开始遍历链表</p>
+<ul>
+<li>如果此数据data之前已经被缓存在链表中了，遍历得到该数据data对应的结点，将其从原来的位置删除，然后再插入到链表头部。</li>
+<li>若此数据data没有被缓存在链表中，又可分为两者情况：<ul>
+<li>链表缓存已满，将链表尾结点删除，然后插入数据data到链表头部</li>
+<li>链表缓存未满，直接将数据data插入到链表头部</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>当掌握了单链表之后，比单链表复杂一点的就出现了。比如循环链表、双向链表等，故名思意，循环链表就是单链表基础上尾结点指向头结点，双向链表就是每个结点都有独特的前驱节点和后继结点。在你掌握了单链表之后，循环链表、双向链表以及双向循环链表的处理方法是类似的。</p>
+</li>
+</ol>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><blockquote>
+<p>栈是一种操作受限的线性表，只能在一端对数据进行删除和插入操作。好比一叠盘子，最下面的盘子是最初放上去的，最上面的盘子是刚放上去的，我们拿走盘子一次只能拿走最上面的一个盘子，而不能从中间抽走任意一个盘子。先进者后出，后进者先出，这就是典型的栈结构。</p>
+</blockquote>
+<p>栈的基本操作有入栈和出栈。而栈的实现方式有两者，一种是数组实现的顺序栈，另一种是链表实现的链式栈。</p>
+<p>首先实现一个顺序栈：借助数组实现简单的入栈出栈操作，通过初始的数组的长度定义栈的容量，入栈时栈未满直接在增加一个数组元素，栈满就定义两倍大小的数组额外加些数据迁移工作即可，出栈只需要栈长度减一即可。</p>
+<p>栈的基本操作的复杂度分析:出栈操作几乎不会涉及到任何数据的搬移操作，所以时间复杂度为O(1)。而入栈操作又分为栈满和栈未满情况，当栈未满时直接插入一个元素到栈顶即可，时间复杂度O(1)；另一种情况需要申请两倍原来大小的内存空间以及数据搬移操作。栈满的操作简称为顺序栈的动态扩容：重点理解数组实现的动态扩容的栈的复杂度分析(通过均摊时间复杂度分析，添加元素的均摊时间复杂度为O(1))。其实也很简单，假设栈初始大小n,一个周期定义为上一次扩容到下一次扩容，一次入栈的时间复杂度为O(1)。当n次入栈之后，栈满执行扩容操作，扩容操作需要申请内存以及数据搬移操作，时间复杂度为O(n),扩容结束之后，一个周期结束了。再仔细理一下，先执行n次O(1)次入栈操作，然后再执行一次O(n)操作，一次O(n)的操作均摊到n次上是不是就是常量级的时间复杂度呢，总的来说，入栈的均摊时间复杂度是不是就是常量级别的呢？</p>
+<p>栈的应用： 理解 函数调用的栈以及JVM内存管理的堆栈 思考实现 表达式求值 括号匹配 包含括号的四则运算</p>
+<ul>
+<li>函数调用使用的栈空间以及JVM内存管理的堆栈均使用了栈的特性功能，而不等同于数据结构的栈。两者是概念上的不同，或者说前者起源于后者，再或者后者是前者抽象。函数调用中有一个特殊的例子，比如递归调用，越早之前调用的函数会越晚返回，理解递归的话会很好理解函数调用中栈的特性：先进后出，后进先出。(如果仔细讨论操作系统分配线程，以及函数调用分配栈空间，栈帧等概念，会出现很多的名词，而这些我并不是特别的清晰。)</li>
+<li>表达式求值的代表就是简单的加减乘除运算。</li>
+</ul>
+<h3 id="单链表反转、链表中环的检测，LRU，栈操作等部分代码在Github上"><a href="#单链表反转、链表中环的检测，LRU，栈操作等部分代码在Github上" class="headerlink" title="单链表反转、链表中环的检测，LRU，栈操作等部分代码在Github上"></a>单链表反转、链表中环的检测，LRU，栈操作等部分代码在<a target="_blank" rel="noopener" href="https://github.com/silent-Keyboard/silent-Keyboard.github.io">Github</a>上</h3>
 <!--
 <a href="http://example.com/2020/12/30/Common-data-structure/#disqus_thread" class="article-comment-link">Comments</a>
 <div id="disqus_thread"></div>
