@@ -1,0 +1,93 @@
+<html>
+<head>
+	
+	<title>Web</title>
+	<meta name="keywords" content="zwhfocus.github.io" />
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+	   <link href="/css/main.css?v=3" rel="stylesheet" type="text/css" />
+    
+        
+<script src="/js/util.js"></script>
+
+        <script>
+            if(isMobile()) {
+                loadjscssfile('../css/mobile.css', 'css');
+            } else {
+                loadjscssfile('../css/desktop.css', 'css');
+            }
+        </script> 
+    
+
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
+
+    
+	<link rel="shortcut icon" type="image/x-icon" href="/%EF%BD%9A.ico?v=3"/>
+    
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+
+<h2 class="title">Web</h2>
+<div style="text-align:center;margin-top: -10px;">
+    <div class="article-category">
+    发表于2021年1月30日
+    
+    
+    
+    
+     </div>
+</div>
+
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-text">html1</span></a></li></ol>
+<p>1 HTML</p>
+<ul>
+<li>强调文字: strong: 加粗 em: 斜体 sub: 下标  sup: 上表 del: 删除文本 ins: 插入文本<br><strong>加粗的文字</strong> <em>斜体的文字</em> <sub>下标文本</sub> <sup> 上标文本</sup> <del>删除文本</del>   <ins>插入文本</ins></li>
+<li>图片: 单标签 src:图片地址 alt: 图片发生错误时可以显示的提示文字 title: 鼠标放到图片上时显示的图片的信息 width-height: 有必要设置图片的宽高设置<img src="图片地址" alt="当图片出现问题时,可以显示一段友好的提示文字" title="鼠标放到图片上时,会出现这张图片的信息" width="300" height="300">
+> 当不设定 width height的时候,img元素在加载前 加载中 加载后是不一样的, 展现在用户面前的就有可能不是特别友好.这应该和DOM加载有关．</li>
+<li>相对路径: ./ 当前路径  ../上层路径   绝对路径 : </li>
+<li>跳转链接: a标签 href属性: 链接的地址 target属性: 改变链接的打开方式, 默认情况下: 在当前页面打开 _self 新窗口打开: _blank   base: 单标签 改变a链接的默认行为<br><a href="http://baidu.com" target="_self">访问百度</a>  <a href="http://baidu.com" target="_blank"> <img src="" alt></a>  <base target="_blank"></li>
+<li>跳转瞄点: 1 利用a链接的方式将#号映射到id属性  2 #号 name属性<ul>
+<li><a href="#HTML">利用id跳转html1</a>  <h2 id="HTML">html1</h2></li>
+<li><a href="#HTML">利用name跳转html2</a>  <a name="HTML">html2</a></li>
+</ul>
+</li>
+<li>特殊符号: &nbsp; &copy; &reg; &lt; &gt; &amp;l &yen; &deg;<img src="./special.png" alt>
+
+
+</li>
+</ul>
+
+<!--
+<a href="http://example.com/2021/01/30/Web/#disqus_thread" class="article-comment-link">Comments</a>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = ''; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+-->
+<div style="display:none">
+<script src="http://s4.cnzz.com/stat.php?id=&web_id=" language="JavaScript"></script>script>
+</div>
+
+
+
+
+
+
+</body>
+</html>
